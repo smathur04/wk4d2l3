@@ -1,103 +1,81 @@
 # Lab: Evaluation Metrics for Generative AI Outputs
 
----
+## Scenario
 
-## Table of Contents
+This lab evaluates the quality of generated summaries. The repository includes a
+small original dataset in `data/summarization_samples.json`, so students can focus
+on evaluation instead of downloading and cleaning a large dataset.
 
-* [Scenario / Background](#scenario--background)
-* [Objectives](#objectives)
-* [Task Overview](#task-overview)
-* [Requirements](#requirements)
-* [Data Guidance](#data-guidance)
-* [Deliverables](#deliverables)
-* [Steps & Recommendations](#steps--recommendations)
-* [Extension / Stretch Goals](#extension--stretch-goals)
-* [References & Resources](#references--resources)
+Each record contains a project update and a concise human-written reference summary.
+The example solution asks a model to summarize the first five records, calculates
+ROUGE scores, and prints the outputs for human review.
 
----
+## Learning objectives
 
-### Scenario / Background
+- Use a reference dataset to evaluate generated text.
+- Calculate ROUGE-1, ROUGE-2, and ROUGE-L.
+- Compare automatic scores with human judgments.
+- Explain why overlap metrics do not fully measure quality.
 
-When deploying generative models in real applications, it's not enough to eyeball outputs—you need objective measures of quality. Metrics such as **ROUGE** and **BLEU** are widely used to evaluate summarization and translation by comparing machine‑generated text with human references.&#x20;
+## Student task
 
-For classification or other tasks with discrete labels, **accuracy** measures the proportion of correct predictions.&#x20;
+1. Load the included JSON dataset.
+2. Generate a summary for each selected project update.
+3. Calculate ROUGE scores against the reference summary.
+4. Review at least five outputs for fluency, coverage, and factual accuracy.
+5. Reflect on whether the scores agree with your human assessment.
 
-In this lab you will build a small evaluation pipeline that computes these metrics for your chosen tasks and compares automatic scores with subjective judgements.
+The included dataset is synthetic and created for this educational exercise. You may
+replace it with an openly licensed dataset, but document its source and license.
 
-### Objectives
+## Metrics
 
-After completing this lab you will be able to:
+Use ROUGE-1, ROUGE-2, and ROUGE-L. ROUGE measures token overlap with the reference;
+a higher score does not automatically mean that a summary is more useful or factual.
 
-* **Select appropriate evaluation metrics** for different tasks: ROUGE for summarization, BLEU for translation, accuracy for classification.
-* **Prepare evaluation datasets** by selecting suitable open‑source datasets with input texts and reference outputs.
-* **Implement automated scoring** using Python libraries (e.g., `rouge_score`, `nltk`) to compute ROUGE, BLEU and accuracy.
-* **Compare automated scores to subjective assessment**, discussing how well metrics capture quality and where they fall short.
+## Running the example solution
 
-### Task Overview
+Install the dependencies:
 
-You will choose one task among summarization, translation or classification and build an evaluation pipeline. For example, you might evaluate how well a model summarises news articles, translates sentences from another language, or classifies movie reviews as positive or negative. You will:
+```bash
+pip install openai rouge-score
+```
 
-1. **Select a dataset** with both input texts and reference outputs (summaries, translations or labels).
-2. **Run your model** or API to generate outputs for a sample of the dataset.
-3. **Compute evaluation metrics** (ROUGE, BLEU or accuracy) for the generated outputs.
-4. **Conduct a subjective assessment**, reading a subset of outputs to judge quality by human standards.
-5. **Compare findings** from automated metrics and human judgement; discuss strengths and limitations of each metric.
+Set a Gemini API key without placing it in the repository:
 
-### Requirements
+```bash
+export GEMINI_API_KEY="your-key"
+python3 SOLUTION_evaluation.py
+```
 
-To meet the lab requirements you must:
+The model name and sample size are hardcoded at the top of the solution file. The
+solution makes five model calls, so it is suitable for a small free-tier test.
 
-* Evaluate **at least one generative task** (summarization, translation or classification).
-* Use **an open‑source dataset** with clearly defined reference outputs. Datasets must be sourced by you from platforms such as Hugging Face Datasets, Kaggle or data.gov.
-* Compute **appropriate metric(s)**: ROUGE‑1, ROUGE‑2 or ROUGE‑L for summarization; BLEU‑n for translation; accuracy (and optionally precision/recall/F1) for classification.
-* Perform **subjective evaluation** on a sample of at least five outputs and summarise your impressions (e.g., quality, fluency, factual accuracy).
-* **Reflect on metric suitability**: discuss whether the metric aligns with your subjective judgement, and note any issues such as sensitivity to sentence length or class imbalance.
-  [Accuracy & More](https://www.evidentlyai.com/classification-metrics/accuracy-precision-recall#:~:text=Accuracy%20is%20a%20metric%20that,the%20total%20number%20of%20predictions)
+## Human review
 
-### Data Guidance
+For each output, record a short judgment for:
 
-This lab requires you to select your own dataset. When searching for datasets, look for the following characteristics:
+- Fluency: Is it clear and readable?
+- Coverage: Does it include the important facts?
+- Factual accuracy: Does it add, remove, or distort information?
 
-* **Input and reference output**: The dataset must include both the input text and the corresponding reference output (summary, translation or label) so you can compute metrics.
-* **Size and manageability**: Aim for a dataset with 500--1,000 examples or take a reasonable subset of a larger dataset to keep processing time manageable.
-* **Open licence**: Choose datasets that are openly licensed for educational use. Recommended sources include:
+Compare those judgments with the ROUGE values in a table such as:
 
-  * **Hugging Face Datasets**—the hub hosts many datasets for tasks like summarization, translation and classification.
-    [Hugging Face Datasets](https://huggingface.co/docs/hub/en/datasets-overview#:~:text=Datasets%20on%20the%20Hub)
-  * **Kaggle**—offers competitions and public datasets; check the metadata for licencing and reference outputs.
-  * **data.gov**—the U.S. Government's open data repository with over 300k datasets.
-    [data.gov](https://data.gov/#:~:text=The%20Home%20of%20the%20U,Government%27s%20Open%20Data)
+| Example | ROUGE-1 | ROUGE-2 | ROUGE-L | Fluency | Coverage | Accuracy |
+|---|---:|---:|---:|---|---|---|
+| 1 |  |  |  |  |  |  |
+| 2 |  |  |  |  |  |  |
 
-### Deliverables
+## Reflection questions
 
-Submit the following:
+- Did the highest-scoring summaries also seem best to you?
+- Did a summary with different wording receive a low overlap score?
+- Did any summary omit or invent an important fact?
+- What would you change in the prompt or evaluation process?
 
-* A **notebook or script** that loads your chosen dataset, generates model outputs, computes metrics, and displays results. Include code for calculating ROUGE, BLEU or accuracy as appropriate.
+## Optional extensions
 
-### Steps & Recommendations
-
-1. **Select your task and model.** Choose summarization, translation or classification. For summarization or translation, you might use a pre‑trained model from Hugging Face; for classification, choose a dataset with labelled text and a generative model that can output class labels.
-2. **Choose a dataset.** Use the Hugging Face Hub search or other data platforms to find a dataset meeting the criteria above. Ensure you have access to both inputs and reference outputs.
-3. **Generate outputs.** For each example (or a subset), run the model to produce a summary, translation or label. Save the outputs.
-4. **Compute metrics.** Use Python libraries such as `rouge_score` for ROUGE, `nltk.translate` for BLEU, or `sklearn.metrics` for accuracy. ROUGE measures how much of the important content from the reference summary appears in your summary.
-5. **Perform subjective evaluation.** Read a sample of outputs and evaluate fluency, informativeness and correctness. Note any differences between your impressions and the metric scores (e.g., high BLEU but poor grammar, or high accuracy but low recall on minority classes).
-6. **Analyse and reflect.** Compare metric results with subjective impressions. Discuss how each metric captures or misses aspects of quality. Highlight limitations such as ROUGE's focus on n‑gram overlap rather than coherence, BLEU's sensitivity to phrase variation, or accuracy's vulnerability to class imbalance.
-
-### Extension / Stretch Goals
-
-* **Additional metrics**: Explore F1‑score, precision, recall or METEOR for translation. Compare results across metrics.
-* **Human evaluation guidelines:** Develop a simple rubric for human evaluation (e.g., 1--5 scale on fluency and informativeness) and compute correlations with automatic scores.
-* **Hyperparameter tuning:** Experiment with different model settings (temperature, max tokens) to see how they affect metrics and human judgement.
-* **Visualisation:** Create plots or bar charts to visualise score distributions across your dataset. Investigate whether particular document lengths or topics correlate with lower scores.
-
-### References & Resources
-
-* **ROUGE metric**: Recall‑oriented measure of content overlap used for summarization evaluation.
-  [ROUGE Details](https://dev.to/aws-builders/mastering-rouge-matrix-your-guide-to-large-language-model-evaluation-for-summarization-with-examples-jjg#:~:text=ROUGE%20and%20BLEU%20are%20tools,this%20in%20the%20next%20article)
-* **BLEU metric**: Evaluates machine translation by comparing candidate translations to references; scores from 0 to 1 indicate closeness.
-  [BLEU Details](https://en.wikipedia.org/wiki/BLEU#:~:text=BLEU%20,popular%20automated%20and%20inexpensive%20metrics)
-* **Accuracy**: Simple ratio of correct predictions to total predictions; widely used but sensitive to class imbalance.
-  [Accuracy Details](https://www.evidentlyai.com/classification-metrics/accuracy-precision-recall#:~:text=Accuracy%20is%20a%20metric%20that,the%20total%20number%20of%20predictions)
-* **Hugging Face datasets**, **Kaggle** and **data.gov**: repositories for open datasets.
-  [Hugging Face Datasets](https://huggingface.co/docs/hub/en/datasets-overview#:~:text=Datasets%20on%20the%20Hub)
-  [data.gov](https://data.gov/#:~:text=The%20Home%20of%20the%20U,Government%27s%20Open%20Data)
+- Evaluate all ten records instead of the default five.
+- Add a second reference summary for selected records.
+- Compare ROUGE with a simple human score.
+- Try BLEU or classification accuracy with a separate dataset.
