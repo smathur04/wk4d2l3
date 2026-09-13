@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "text": "The client completed interviews with 24 current-state users. The interviews found that approval requests are often tracked in email instead of the case system. The project team will test a shared approval queue during the October pilot.",
+    "reference_summary": "User interviews found that approval requests are often tracked outside the case system, so the October pilot will test a shared approval queue."
+  },
+  {
+    "id": 2,
+    "text": "Migration testing found duplicate customer IDs in 18 percent of sampled legacy records. Priya Shah owns the cleanup and plans to deliver a corrected extract by October 16. The team will rerun the sample after the corrected extract is available.",
+    "reference_summary": "Migration testing found an 18 percent duplicate-ID rate; Priya Shah owns cleanup and will provide a corrected extract by October 16."
+  },
+  {
+    "id": 3,
+    "text": "The integration vendor has not confirmed capacity for the API load test. Mateo Ruiz will request written confirmation by October 11. The steering committee will review the response before deciding whether the November 4 launch date remains realistic.",
+    "reference_summary": "API load-test capacity is unconfirmed; Mateo Ruiz will obtain confirmation by October 11 for review before the November 4 launch decision."
+  },
+  {
+    "id": 4,
+    "text": "The training team shortened the first onboarding session from three hours to two hours after a pilot with eight users. The revised session keeps the hands-on exercise but moves optional background material into a self-paced guide.",
+    "reference_summary": "After an eight-user pilot, onboarding was shortened to two hours while keeping the hands-on exercise and moving optional material to a guide."
+  },
+  {
+    "id": 5,
+    "text": "The program is currently forecast to spend $61,600 on the junior-heavy staffing option, including contingency, against an approved budget of $65,000. The specialist-heavy option would total $69,300 and exceed the budget.",
+    "reference_summary": "The junior-heavy option totals $61,600 and fits the $65,000 budget; the specialist-heavy option totals $69,300 and exceeds it."
+  },
+  {
+    "id": 6,
+    "text": "Customer support received 42 onboarding questions in the first week. Twenty-seven questions concerned password setup, while the remaining questions covered permissions and reporting. The product team will add password guidance to the welcome email.",
+    "reference_summary": "Most of the 42 onboarding questions concerned password setup, so the product team will improve password guidance in the welcome email."
+  },
+  {
+    "id": 7,
+    "text": "The security review closed six findings. Two low-severity findings remain open because the vendor must provide updated encryption evidence. The security lead scheduled a follow-up review for November 8.",
+    "reference_summary": "Six security findings are closed; two low-severity vendor evidence items remain open for review on November 8."
+  },
+  {
+    "id": 8,
+    "text": "The change request adds an export filter and a new audit column. Engineering estimates four days of work, and the product owner approved the change provided that the release date does not move.",
+    "reference_summary": "An approved change adds an export filter and audit column, estimated at four engineering days without moving the release date."
+  },
+  {
+    "id": 9,
+    "text": "The operations team ran a two-day pilot of the new dashboard. Supervisors used the alert view daily, but analysts requested a way to download filtered results. The team will assess the download request during backlog planning.",
+    "reference_summary": "Supervisors used the dashboard alert view during the pilot, while analysts requested downloadable filtered results for backlog review."
+  },
+  {
+    "id": 10,
+    "text": "The implementation plan now includes a rehearsal on December 3 and production deployment on December 6. The rehearsal depends on receiving the final interface specification from the vendor by November 27.",
+    "reference_summary": "The plan schedules a December 3 rehearsal and December 6 deployment, dependent on the vendor's interface specification by November 27."
+  }
+]
