@@ -1,5 +1,14 @@
 # Lab: Evaluation Metrics for Generative AI Outputs
 
+> **Environment reminder:** Use a separate Python 3.11 environment for this lab.
+> From this directory, run:
+>
+> ```bash
+> python3.11 -m venv .venv
+> source .venv/bin/activate
+> python -m pip install --upgrade pip
+> ```
+
 ## Scenario
 
 This lab evaluates the quality of generated summaries. The repository includes a
