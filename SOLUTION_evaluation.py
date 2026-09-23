@@ -3,10 +3,10 @@ import os
 from openai import OpenAI
 from rouge_score import rouge_scorer
 
-MODEL = "gemini-2.0-flash"
+MODEL = "gemini-3.5-flash-lite"
 SAMPLE_SIZE = 5
 
-api_key = os.environ.get("GEMINI_API_KEY")
+api_key = ""
 client = OpenAI(
     api_key=api_key,
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
